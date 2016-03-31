@@ -1,0 +1,59 @@
+function count_same_elements(collection) {
+  
+   var same_elements_array = [];
+
+   for(var i = 0;i < collection.length;i++)
+   {
+
+      same_elements_array = count(same_elements_array,collection[i]);
+   }
+
+   return same_elements_array; 
+
+}
+
+function count(new_array,string)
+{
+
+    var element = string.split("");
+
+    for(var k = 0;k < new_array.length && element[0] != new_array[k].name;k++) ;
+
+    if(element[0] === string)
+    {
+        if(k === new_array.length)
+
+            new_array.push({name:string,summary:1});
+        else
+
+            new_array[k].summary++;
+    }
+    else
+    {
+        if(element.length <= 3)
+        {
+            if(k === new_array.length)
+
+                new_array.push({name:element[0],summary:parseInt(element[2])});
+            else
+                new_array[k].summary += parseInt(element[2]);
+  
+        }
+        else
+        {
+            var x = 0;
+            for(var i = 2;i < element.length-1;i++)
+            {
+                x = x*10+parseInt(element[i]);
+            }
+            if(k === new_array.length)
+
+                new_array.push({name:element[0],summary:x});
+            else
+                new_array[k].summary += x;
+  
+        }
+    }
+  
+    return new_array;
+}
